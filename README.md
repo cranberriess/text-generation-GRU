@@ -12,7 +12,7 @@ import urllib.request
 import re
 tf.__version__
 ```
-Предобработка данных:
+### Предобработка данных:
 1) Загрузка книги
 ```
 url = "https://www.gutenberg.org/cache/epub/64317/pg64317.txt"
@@ -74,8 +74,8 @@ for i, (input_idx, target_idx) in enumerate(zip(input_example[:5], target_exampl
     print("  input: {} ({:s})".format(input_idx, repr(idx2char[input_idx])))
     print("  expected output: {} ({:s})".format(target_idx, repr(idx2char[target_idx])))
  ```
-Построение и обучение модели<br>
-Гиперпараметры для модели:
+### Построение и обучение модели
+Гиперпараметры для модели
 ```
 BATCH_SIZE = 64
 BUFFER_SIZE = 10000
@@ -126,7 +126,7 @@ history = model.fit(dataset, epochs=epochs, callbacks=[checkpoint_callback])
 ```
 Важно, что обучение RNN дорого обходится и может занять много времени. Мы тренируем здесь только 5 эпох в демонстрационных целях. Чтобы получить хорошо настроенную модель, этот пример лучше всего запустить с 50 эпохами<br>
 
-Определение функции для запроса модели и генерации текста
+ Определение функции для запроса модели и генерации текста
 ```
 def generate_text(model, start_string, temp, gen_chars):
   input_eval = [char2idx[s] for s in start_string]
@@ -162,7 +162,7 @@ model.build(tf.TensorShape([1, None]))
 ```
  
 
-Генерация текстов разных температур<br> 
+### Генерация текстов разных температур<br> 
 Температура используется для определения предсказуемости текста. Более низкая температура (0,25) создает интеллектуальный текст. В то время как более высокая температура (2.0) генерирует более уникальный текст. Более высокие температуры могут привести к бессмысленному тексту.
 
 ```
@@ -177,7 +177,7 @@ text_1 = generate_text(model, u"I never ", 1.0, 200)
 text_2 = generate_text(model, u"I never ", 2.0, 200)
 ``` 
 
-Перплексия и энтропия<br>
+### Перплексия и энтропия<br>
 Лучше та модель, которая лучше предсказывает детали тестовой коллекции (меньше перплексия)
 ```
 from nltk import ngrams
@@ -205,7 +205,7 @@ perplexity_1 = calculate_perplexity(probabilities)
 print("Perplexity:", perplexity_1)
 
 ```
-Генерация текстов разной длины
+### Генерация текстов разной длины
 ```
 text_1 = generate_text(model, u"He said ", 0.5, 50)
  
@@ -233,7 +233,7 @@ print("Perplexity:", perplexity_1)
 
 ```
 
-Определение потерь
+### Определение потерь
 ```
 import matplotlib.pyplot as plt
 plt.plot(history.history['loss'], label = 'Обучение')
@@ -242,9 +242,9 @@ plt.ylabel('Потери')
 plt.legend()
 plt.show()
 ```
-График перплексии и температуры:
+ График перплексии и температуры:
 ![image](https://github.com/cranberriess/text-generation-GRU/assets/105839329/93f40e65-98ca-4c38-be22-1233887b65c4)<br>
-График перплексии и длины:
+ График перплексии и длины:
 ![image](https://github.com/cranberriess/text-generation-GRU/assets/105839329/65690867-b67a-449a-8d22-837aeb13f63a)<br>
 График потерь:
  ![image](https://github.com/cranberriess/text-generation-GRU/assets/105839329/69b77088-ac59-4daf-ba4f-9a6884fafb4c)<br>
