@@ -242,11 +242,11 @@ plt.ylabel('Потери')
 plt.legend()
 plt.show()
 ```
- График перплексии и температуры:
+ График перплексии и температуры:<br>
 ![image](https://github.com/cranberriess/text-generation-GRU/assets/105839329/93f40e65-98ca-4c38-be22-1233887b65c4)<br>
- График перплексии и длины:
+ График перплексии и длины:<br>
 ![image](https://github.com/cranberriess/text-generation-GRU/assets/105839329/65690867-b67a-449a-8d22-837aeb13f63a)<br>
-График потерь:
+График потерь:<br>
  ![image](https://github.com/cranberriess/text-generation-GRU/assets/105839329/69b77088-ac59-4daf-ba4f-9a6884fafb4c)<br>
 
 ## Выводы на основе графиков 
